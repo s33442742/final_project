@@ -24,6 +24,7 @@ try:
     FROM {table_name}
     """, conn)
 
+    df = df.tail(300)
     st.write(df.head())
 
     # 畫收盤價
@@ -34,7 +35,7 @@ try:
     ax1.plot(df['close'])
 
     st.pyplot(fig1)
-
+    plt.close()
     # ===== MACD =====
 
     df['EMA12'] = df['close'].ewm(span=12).mean()
